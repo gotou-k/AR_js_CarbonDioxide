@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>GeoAR.js demo</title>
+    <script src='https://aframe.io/releases/1.0.4/aframe.min.js'></script>
+    <script src="components/random-color.js"></script>
+    <script src="components/snap.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+    <script>
+        THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
+	<!-- GISサーバーから画像の読み込み -->
+	<img id="setsumei2" src="https://gis.takenaka.co.jp/server/rest/services/Hosted/picture/FeatureServer/0/34/attachments/26/a">
+    </script>
+	<img src="" alt="">
+	<script>
+   		function ImageToBase64(img, mime_type) {
+    		// New Canvas
+    		var canvas = document.createElement('canvas');
+    		canvas.width  = img.width;
+    		canvas.height = img.height;
+    		// Draw Image
+    		var ctx = canvas.getContext('2d');
+    		ctx.drawImage(img, 0, 0);
+   		 // To Base64
+    		return canvas.toDataURL(mime_type);
+		}
+
+		//=====================================================
+		// 使い方
+		//=====================================================
+		var img = document.getElementById('MyImg');
+		var b64 = ImageToBase64(img, "higashi.png"); // "data:image/jpeg;base64,XXXXXX..." みたいな文字列
+	</script>
+</head>
+
+<body style='margin: 0; overflow: hidden;'>
+	
+<!-- データの読み込み -->
+    <a-assets>
+	    <img id="kita" src="images/kitajikkento.png">
+	    <img id="higashi" src="images/higashijikkento.png">
+	    <img id="minami" src="images/minamijikkento.png">
+	    <img id="nishi" src="images/nishijikkento.png">
+	    <img id="shintaika" src="images/shintaikajikkento.png">
+	    <img id="kenkyu" src="images/kenkyuto.png">
+	    <img id="kanri" src="images/kanrito.png">	    
+	    <img id="1F_cafe" src="images/1F_cafe.png">
+	    <img id="1F_jibankiso" src="images/1F_jibankiso.png">
+	    <img id="1F_jishinkogaku" src="images/1F_jishinkogaku.png">
+	    <img id="1F_kenchikukankyo" src="images/1F_kenchikukankyo.png">
+	    <img id="1F_kensetsuzairyo" src="images/1F_kensetsuzairyo.png">
+	    <img id="kotei" src="images/kotei.png">
+	    <img id="1F_kozo" src="images/1F_kozo.png">
+	    <img id="1F_miraikukan" src="images/1F_miraikukan.png">
+	    <img id="1F_sentangijutsu" src="images/1F_sentangijutsu.png">
+	    <img id="1F_shizenseitai" src="images/1F_shizenseitai.png">
+	    <img id="1F_uchiawase" src="images/1F_uchiawase.png">
+    </a-assets>	
+	<a-scene
+             vr-mode-ui="enabled: false"
+             embedded
+             arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
+		
+	<!-- 配置させたいデータと位置情報を以下に記述する -->
+        <a-entity gps-entity-place="latitude: 35.8048; longitude: 140.1194;" look-at="[gps-camera]">
+        	<a-image src="#kita" width="20" height="15" position="0 40 0"></a-image>	 
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.8045; longitude: 140.1201;" look-at="[gps-camera]">
+		<a-image src="#higashi" width="20" height="15" position="0 40 0"></a-image>
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.8037; longitude: 140.1198;" look-at="[gps-camera]">
+		<a-image src="#minami" width="20" height="15" position="0 40 0"></a-image>
+	</a-entity>
+	
+	<a-entity gps-entity-place="latitude: 35.8037; longitude: 140.1186;" look-at="[gps-camera]">
+		<a-image src="#nishi" width="20" height="15" position="0 40 0"></a-image>
+	</a-entity>
+	
+	<a-entity gps-entity-place="latitude: 35.804; longitude: 140.121;" look-at="[gps-camera]">
+		<a-image src="#shintaika" width="20" height="15" position="0 40 0"></a-image>
+	</a-entity>
+	
+	<a-entity gps-entity-place="latitude: 35.8042; longitude: 140.1188;" look-at="[gps-camera]">
+		<a-image src="#kenkyu" width="20" height="15" position="0 40 0"></a-image>
+	</a-entity>
+	
+	<a-entity gps-entity-place="latitude: 35.8043; longitude: 140.1194;" look-at="[gps-camera]">
+		<a-image src="#kanri" width="20" height="15" position="0 40 0"></a-image>
+	</a-entity>
+	
+	
+		
+		
+	<a-entity gps-entity-place="latitude: 35.8039; longitude: 140.1188;" look-at="[gps-camera]">
+		<a-image src="#1F_cafe" width="2" height="1.5" position="0 1.8 0"></a-image>
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.8039; longitude: 140.1189;" look-at="[gps-camera]">
+		<a-image src="#1F_cafe" width="2" height="1.5" position="0 1.8 0"></a-image>
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.8039; longitude: 140.1190;" look-at="[gps-camera]">
+		<a-image src="#1F_cafe" width="2" height="1.5" position="0 1.8 0"></a-image>
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.8039; longitude: 140.1191;" look-at="[gps-camera]">
+		<a-image src="#1F_cafe" width="2" height="1.5" position="0 1.8 0"></a-image>
+	</a-entity>
+	
+	
+		
+		
+	<a-entity gps-entity-place="latitude: 35.8040; longitude: 140.1188;" look-at="[gps-camera]">
+		<a-image src="#1F_cafe" width="2" height="1.5" position="0 1.8 0"></a-image>
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.8040; longitude: 140.1189;" look-at="[gps-camera]">
+		<a-image src="#1F_cafe" width="2" height="1.5" position="0 1.8 0"></a-image>
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.8040; longitude: 140.1190;" look-at="[gps-camera]">
+		<a-image src="#1F_cafe" width="2" height="1.5" position="0 1.8 0"></a-image>
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.8040; longitude: 140.1191;" look-at="[gps-camera]">
+		<a-image src="#1F_cafe" width="2" height="1.5" position="0 1.8 0"></a-image>
+	</a-entity>
+	
+	
+		
+		
+	<a-entity gps-entity-place="latitude: 35.8041; longitude: 140.1188;" look-at="[gps-camera]">
+		<a-image src="#1F_cafe" width="2" height="1.5" position="0 1.8 0"></a-image>
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.8041; longitude: 140.1189;" look-at="[gps-camera]">
+		<a-image src="#1F_cafe" width="2" height="1.5" position="0 1.8 0"></a-image>
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.8041; longitude: 140.1190;" look-at="[gps-camera]">
+		<a-image src="#1F_cafe" width="2" height="1.5" position="0 1.8 0"></a-image>
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.8041; longitude: 140.1191;" look-at="[gps-camera]">
+		<a-image src="#1F_cafe" width="2" height="1.5" position="0 1.8 0"></a-image>
+	</a-entity>
+		
+		
+	
+	<a-text value="This will always face the user." look-at="[gps-camera]" scale="10 10 10"
+            gps-entity-place="latitude: 35.8044>; longitude: 140.119345;"></a-text>
+						     
+        <a-camera gps-camera="minDistance:0.01; maxDistance:80;" rotation-reader></a-camera>						  
+	</a-scene>
+</body>
