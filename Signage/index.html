@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>GeoAR.js demo</title>
+    <script src='https://aframe.io/releases/0.9.2/aframe.min.js'></script>
+    <script src="components/random-color.js"></script>
+    <script src="components/snap.js"></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+    <script>
+        THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
+	<img id="setsumei2" src="https://gis.takenaka.co.jp/server/rest/services/Hosted/picture/FeatureServer/0/34/attachments/26/a">
+    </script>
+</head>
+
+<body style='margin: 0; overflow: hidden;'>
+
+<!-- データの読み込み -->
+    <a-assets>
+	    <img id="setsumei" src="スライド1.PNG">
+	    <img id="higashi" src="higashi.png">
+	    <img id="kita" src="kita.png">
+	    <img id="syokudo" src="syokudo.png">
+    </a-assets>	
+	<a-scene
+             vr-mode-ui="enabled: false"
+             embedded
+             arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
+		
+	<!-- 配置させたいデータと位置情報を以下に記述する -->
+        <a-entity gps-entity-place="latitude: 35.804467; longitude: 140.120222;" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
+        	<a-image src="#higashi" width="10" height="10" position="0 20 0">
+		<a-animation attribute="rotation" from="0 0 0" to="0 360 0" direction="alternate" dur="4000"repeat="indefinite" easing="ease"> </a-animation>
+		</a-image>	 
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.804921; longitude: 140.119299;" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
+		<a-image src="#kita" width="10" height="10" position="0 20 0">
+		<a-animation attribute="rotation" from="0 0 0" to="0 360 0" direction="alternate" dur="4000"repeat="indefinite" easing="ease"> </a-animation>
+		</a-image>
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.804411; longitude: 140.119341;" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
+		<a-image src="#syokudo" width="10" height="10" position="0 20 0" rotation="0 180 0">
+		<a-animation attribute="rotation" from="0 0 0" to="0 360 0" direction="alternate" dur="4000"repeat="indefinite" easing="ease"> </a-animation>
+		</a-image>
+	</a-entity>
+		
+	<a-entity gps-entity-place="latitude: 35.804803; longitude: 140.118146;">
+		<a-text value="調の森" scale="500 500 500";">
+		<a-animation attribute="rotation" from="0 0 0" to="0 360 0" direction="alternate" dur="4000"repeat="indefinite" easing="ease"> </a-animation>
+		</a-text>
+	</a-entity>
+						     
+        <a-camera gps-camera="minDistance:0.01; maxDistance:10;" rotation-reader></a-camera>					  
+	</a-scene>
+</body>
