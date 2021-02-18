@@ -16,34 +16,37 @@
         THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/' </script>
 </head>
 
-<body onLoad= "loadText('2019-07-23_09-52-51-SCD3x_406538-407199-50789921.edf')">
+<body onLoad= "csv.load("2019-07-23_09-52-51-SCD3x_406538-407199-50789921.edf", "table")">
 <script>
-	function loadText(file) {
-		var request;
-		if (window.XMLHttpRequest) {
-				// IE7+, Firefox, Chrome, Opera, Safari
-				request = new XMLHttpRequest();
-			} else {
-				// code for IE6, IE5
-				request = new ActiveXObject('Microsoft.XMLHTTP');
-			}
-		// load
-		request.open('GET', file, false);
-		request.send();
-		process(request.responseText);
-		}
-
-	function process(txt){
-		data = txt.split('	');
-		for (i = 0; i < data.length; i++) {
-			if (data[i].indexOf(":")!=-1){
-				ID=data[i].substring(0,data[i].indexOf(":"));
-				TEXT=data[i].substr(data[i].indexOf(":")+1);
-				obj=document.getElementById(ID);
-				obj.innerHTML=TEXT;
-				}
-			}
-		}
+	"use strict";
+	var csv = {
+    		load: function (filename, id) {
+        		fetch(filename).then(
+            		Response=>{
+                	return Response.text();
+            		}).then(data1 =>{
+                	let separate1 = "	";
+                	let separate2 = ",";
+                	let data_tbl = (data1.split(separate1)).map(function(value){
+                    	return (value.split(separate2)).map(function(value1){
+                        return value1.slice(1, -1);
+                    		});
+                	});
+                	var str = "";
+                	for (const key in data_tbl) {
+                    		str+=`<tr>`;
+                    		for (const key1 in data_tbl[key]) {
+                        		str+=`<td>${data_tbl[key][key1]}</td>`;
+                    		}
+                    	str+=`</tr>`;
+                	}
+                	document.getElementById(id).innerHTML = str;
+                	return "OK";
+            		}).catch(error=>{
+                		console.log("失敗しました" + error);
+            		})
+    			}
+		};
 	</script>
 	
 	
