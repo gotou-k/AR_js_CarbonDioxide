@@ -34,7 +34,7 @@
 		}
 
 	function process(txt){
-		data = txt.split(/\r\n|\r|\n/);
+		data = txt.split('	');
 		for (i = 0; i < data.length; i++) {
 		if (data[i].indexOf(":")!=-1){
 		ID=data[i].substring(0,data[i].indexOf(":"));
