@@ -18,8 +18,6 @@
 
 <body onLoad= "csv.load("2019-07-23_09-52-51-SCD3x_406538-407199-50789921.edf", "table")">
 <script>
-	var arr = [“い”, “ろ”, “は”, “に”]
-	console.log( arr[0] ) // 出力結果：い
 	"use strict";
 	var csv = {
     		load: function (filename, id) {
@@ -49,10 +47,17 @@
             		})
     			}
 		};
-		document.getElementById('stock').innerHTML = csv;
+		 var todo = ['デザインカンプ作成', 'データ整理', '勉強会申し込み', '牛乳買う'];
+        	todo.push('歯医者に行く');
+        	for (var i = 0; i < todo.length; i++) {
+		    var li = document.createElement('li');
+            	li.textContent = todo[i];
+            	document.getElementById('list').appendChild(li);
+        	}
 	
 	</script>
-	console.log( arr[0] )
+	<ul id="list">
+    	</ul>
 	
 	
 	
